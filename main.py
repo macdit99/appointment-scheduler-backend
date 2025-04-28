@@ -5,6 +5,7 @@ from typing import List, Optional
 from datetime import datetime, time
 import os
 from supabase import create_client, Client
+from models import  User
 
 # Initialize Supabase client
 # supabase_url = os.environ.get("SUPABASE_URL")
@@ -262,3 +263,8 @@ async def update_appointment_status(appointment_id: str, status: str):
         return result.data[0]
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get('/user')
+def list_users(user: User):
+    return user
